@@ -1,0 +1,49 @@
+#include <16f628a.h>   
+#FUSES INTRC_IO,NOWDT,NOPUT,NOMCLR,NOBROWNOUT
+#fuses NOPROTECT,NOCPD,NOLVP,NOMCLR
+#use fast_io(a)
+#use fast_io(b)
+#use delay (internal=4M)
+#include <lcd.c>
+#byte puerto_b=06
+#define emi PIN_A0 // emi=emisor=trig
+#define recep PIN_B0 // recep=receptor=echo
+//#define 
+int distancia()
+{
+int centi=0;
+output_high(emi); // aqui enviaremos el pulso 
+delay_us(10);     // deacuerdo al data
+output_low(emi);
+
+ while (recep==1)
+ {
+ centi++;
+ delay_us(58);
+ }
+ delay_ms(50); // el data dice que demoremos a 50 ms 
+ return (centi);
+}
+void main()
+{
+int dis;
+lcd_init(); // inicializa lcd
+
+
+while (true)
+{ 
+dis=distancia(); 
+
+lcd_gotoxy(1,1);
+if(dis>50){ // si lectura > 50cm no hay objeto
+lcd_putc('\f'); 
+printf(lcd_putc,"NO HAY OBJETO");
+output_low(pin_B1);
+}
+else{ // si distancia fue < 50cm  imprime en LCD
+printf(lcd_putc,"%03cm ",dis);
+output_high(pin_B1);
+}
+}
+
+}
