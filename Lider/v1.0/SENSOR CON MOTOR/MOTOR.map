@@ -1,0 +1,232 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Tue Mar 15 07:10:45 2022
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000020    program   0x000476
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000020    0x00025a      
+            574 out of 8455 program addresses used, program memory utilization is 6%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     AQUI   0x000116    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI1   0x000124    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI2   0x000132    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI3   0x000142    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI4   0x000152    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                   A_ECHO   0x0000ff    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                 CALCULAR   0x000102    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                 COMIENZA   0x00002e    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\PROYECTO.ASM
+                 COMPARAR   0x000108    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                      DOS   0x000046    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS0   0x000053    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS1   0x000061    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS10   0x0000d7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS11   0x0000e5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS2   0x00006f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS3   0x00007c    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS4   0x000089    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS5   0x000096    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS6   0x0000a3    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS7   0x0000b0    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS8   0x0000bd    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS9   0x0000ca    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                      INI   0x000020    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\PROYECTO.ASM
+                MEDIR_DIS   0x000103    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                      REG   0x000030    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\PROYECTO.ASM
+                     TRES   0x000044    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES0   0x000051    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES1   0x00005f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES10   0x0000d5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES11   0x0000e3    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES2   0x00006d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES3   0x00007a    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES4   0x000087    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES5   0x000094    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES6   0x0000a1    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES7   0x0000ae    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES8   0x0000bb    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES9   0x0000c8    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                      UNO   0x000048    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO0   0x000055    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO1   0x000063    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO10   0x0000d9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO11   0x0000e7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO2   0x000071    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO3   0x00007e    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO4   0x00008b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO5   0x000098    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO6   0x0000a5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO7   0x0000b2    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO8   0x0000bf    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO9   0x0000cc    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _10MS   0x00004f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   _300ML   0x000092    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _40MS   0x0000d3    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _4SEG   0x0000e1    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _55US   0x000040    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _65MS   0x00005d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                  _CENTRO   0x00006b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                  _DECIDE   0x00010c    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                     _DER   0x000078    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+           _ENVIARCOMANDO   0x000160    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+             _ENVIARLETRA   0x000166    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_10   0x0001cc    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_11   0x0001d5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_12   0x0001de    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_13   0x0001e7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_14   0x0001f0    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_15   0x0001f9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_16   0x000202    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_17   0x00020b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_18   0x000214    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_19   0x00021d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_2   0x000194    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_20   0x000226    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_21   0x00022f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_22   0x000238    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_23   0x000241    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_24   0x00024a    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_25   0x000253    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_3   0x00019b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_4   0x0001a2    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_5   0x0001a9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_6   0x0001b0    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_7   0x0001b7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_8   0x0001be    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_9   0x0001c5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                     _IZQ   0x000085    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   _MEDIR   0x0000ef    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                     _MOV   0x0000c6    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   _M_LCD   0x00016c    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+              _M_OFF_SM_L   0x000110    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+             _M_OFF_SM_L1   0x000114    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                     _NUM   0x00018d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                 _SM_C_ML   0x000150    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                 _SM_C_MR   0x000130    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                _SM_C_RET   0x000140    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    _SM_R   0x000122    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                      _TD   0x00009f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_C   0x0000b9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_R   0x0000ac    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      INI   0x000020    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\PROYECTO.ASM
+                 COMIENZA   0x00002e    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\PROYECTO.ASM
+                      REG   0x000030    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\PROYECTO.ASM
+                    _55US   0x000040    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     TRES   0x000044    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                      DOS   0x000046    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                      UNO   0x000048    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _10MS   0x00004f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES0   0x000051    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS0   0x000053    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO0   0x000055    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _65MS   0x00005d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES1   0x00005f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS1   0x000061    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO1   0x000063    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                  _CENTRO   0x00006b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES2   0x00006d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS2   0x00006f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO2   0x000071    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     _DER   0x000078    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES3   0x00007a    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS3   0x00007c    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO3   0x00007e    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     _IZQ   0x000085    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES4   0x000087    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS4   0x000089    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO4   0x00008b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   _300ML   0x000092    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES5   0x000094    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS5   0x000096    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO5   0x000098    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                      _TD   0x00009f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES6   0x0000a1    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS6   0x0000a3    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO6   0x0000a5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_R   0x0000ac    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES7   0x0000ae    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS7   0x0000b0    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO7   0x0000b2    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_C   0x0000b9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES8   0x0000bb    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS8   0x0000bd    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO8   0x0000bf    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     _MOV   0x0000c6    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES9   0x0000c8    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS9   0x0000ca    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO9   0x0000cc    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _40MS   0x0000d3    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES10   0x0000d5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS10   0x0000d7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO10   0x0000d9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    _4SEG   0x0000e1    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES11   0x0000e3    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS11   0x0000e5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO11   0x0000e7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\RETARDOS.INC
+                   _MEDIR   0x0000ef    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                   A_ECHO   0x0000ff    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                 CALCULAR   0x000102    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                MEDIR_DIS   0x000103    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                 COMPARAR   0x000108    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+                  _DECIDE   0x00010c    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MEDIR.INC
+              _M_OFF_SM_L   0x000110    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+             _M_OFF_SM_L1   0x000114    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                     AQUI   0x000116    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    _SM_R   0x000122    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI1   0x000124    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                 _SM_C_MR   0x000130    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI2   0x000132    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                _SM_C_RET   0x000140    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI3   0x000142    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                 _SM_C_ML   0x000150    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI4   0x000152    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\MOVIMIENTO.INC
+           _ENVIARCOMANDO   0x000160    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+             _ENVIARLETRA   0x000166    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _M_LCD   0x00016c    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                     _NUM   0x00018d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_2   0x000194    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_3   0x00019b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_4   0x0001a2    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_5   0x0001a9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_6   0x0001b0    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_7   0x0001b7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_8   0x0001be    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                    _ES_9   0x0001c5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_10   0x0001cc    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_11   0x0001d5    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_12   0x0001de    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_13   0x0001e7    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_14   0x0001f0    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_15   0x0001f9    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_16   0x000202    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_17   0x00020b    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_18   0x000214    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_19   0x00021d    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_20   0x000226    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_21   0x00022f    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_22   0x000238    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_23   0x000241    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_24   0x00024a    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+                   _ES_25   0x000253    program     static E:\ESIMEZ\Tesis\ProgramaMPLAB\SENSOR CON MOTOR\LCD.INC
+
+
