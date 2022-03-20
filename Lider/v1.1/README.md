@@ -13,8 +13,8 @@
 ```
 
 ## Problemas conocidos
-- [] Una llanta no gira cuando el carrito hace el retroceso
-- [] No podemos excitar el motor del direccionamiento y de la tracción al mismo tiempo
-- [] Al momento de dar la vuelta, el carrito deja de sensar y por lo tanto puede chocar
+- [ ] Una llanta no gira cuando el carrito hace el retroceso
+- [ ] No podemos excitar el motor del direccionamiento y de la tracción al mismo tiempo
+- [ ] Al momento de dar la vuelta, el carrito deja de sensar y por lo tanto puede chocar
 - [x] El carrito no da vuelta, siempre va en línea recta
 - [x] El carrito no se posiciona bien después de encontrar un obstáculo
