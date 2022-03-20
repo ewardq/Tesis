@@ -1,0 +1,5 @@
+Esta versión la entregamos el sábado 19 de marzo.
+Ahora tenemos control de la direccional (Ackermann)
+Los retardos son más largos
+Agregué un retroceso antes de cada vuelta
+Un motor no gira cuando la rutina de "reversa" está corriendo
