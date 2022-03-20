@@ -1,0 +1,248 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Sat Mar 19 07:23:40 2022
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000002
+                   .cinit    romdata   0x000001    program   0x000004
+                   .org_1       code   0x000020    program   0x0004d8
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000002      
+                            0x000020    0x00028b      
+            623 out of 8455 program addresses used, program memory utilization is 7%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     AQUI   0x000132    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI1   0x000140    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI2   0x00014e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI3   0x000168    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI4   0x000179    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                   A_ECHO   0x00011b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                 CALCULAR   0x00011e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                 COMIENZA   0x00002e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\PROYECTO.ASM
+                 COMPARAR   0x000124    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                      DOS   0x000046    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS0   0x000053    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS1   0x000061    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS10   0x0000d7    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS11   0x0000e5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   DOS11z   0x0000f3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  DOS11zz   0x000101    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS2   0x00006f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS3   0x00007c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS4   0x000089    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS5   0x000096    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS6   0x0000a3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS7   0x0000b0    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS8   0x0000bd    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS9   0x0000ca    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                      INI   0x000020    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\PROYECTO.ASM
+                MEDIR_DIS   0x00011f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                      REG   0x000030    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\PROYECTO.ASM
+                     TRES   0x000044    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES0   0x000051    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES1   0x00005f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES10   0x0000d5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES11   0x0000e3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  TRES11z   0x0000f1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                 TRES11zz   0x0000ff    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES2   0x00006d    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES3   0x00007a    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES4   0x000087    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES5   0x000094    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES6   0x0000a1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES7   0x0000ae    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES8   0x0000bb    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES9   0x0000c8    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                      UNO   0x000048    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO0   0x000055    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO1   0x000063    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO10   0x0000d9    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO11   0x0000e7    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   UNO11z   0x0000f5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  UNO11zz   0x000103    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO2   0x000071    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO3   0x00007e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO4   0x00008b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO5   0x000098    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO6   0x0000a5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO7   0x0000b2    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO8   0x0000bf    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO9   0x0000cc    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _10MS   0x00004f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _1SEG   0x0000fd    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _2SEG   0x0000ef    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   _300ML   0x000092    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _40MS   0x0000d3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _4SEG   0x0000e1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _55US   0x000040    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _65MS   0x00005d    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  _CENTRO   0x00006b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  _DECIDE   0x000128    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                     _DER   0x000078    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+           _ENVIARCOMANDO   0x000191    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+             _ENVIARLETRA   0x000197    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_10   0x0001fd    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_11   0x000206    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_12   0x00020f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_13   0x000218    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_14   0x000221    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_15   0x00022a    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_16   0x000233    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_17   0x00023c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_18   0x000245    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_19   0x00024e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_2   0x0001c5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_20   0x000257    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_21   0x000260    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_22   0x000269    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_23   0x000272    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_24   0x00027b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_25   0x000284    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_3   0x0001cc    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_4   0x0001d3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_5   0x0001da    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_6   0x0001e1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_7   0x0001e8    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_8   0x0001ef    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_9   0x0001f6    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                     _IZQ   0x000085    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   _MEDIR   0x00010b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                     _MOV   0x0000c6    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   _M_LCD   0x00019d    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+              _M_OFF_SM_L   0x00012c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+             _M_OFF_SM_L1   0x000130    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                     _NUM   0x0001be    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                 _SM_C_ML   0x000177    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                 _SM_C_MR   0x00014c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                _SM_C_RET   0x000166    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    _SM_R   0x00013e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                      _TD   0x00009f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_C   0x0000b9    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_R   0x0000ac    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      INI   0x000020    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\PROYECTO.ASM
+                 COMIENZA   0x00002e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\PROYECTO.ASM
+                      REG   0x000030    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\PROYECTO.ASM
+                    _55US   0x000040    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     TRES   0x000044    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                      DOS   0x000046    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                      UNO   0x000048    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _10MS   0x00004f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES0   0x000051    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS0   0x000053    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO0   0x000055    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _65MS   0x00005d    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES1   0x00005f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS1   0x000061    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO1   0x000063    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  _CENTRO   0x00006b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES2   0x00006d    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS2   0x00006f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO2   0x000071    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     _DER   0x000078    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES3   0x00007a    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS3   0x00007c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO3   0x00007e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     _IZQ   0x000085    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES4   0x000087    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS4   0x000089    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO4   0x00008b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   _300ML   0x000092    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES5   0x000094    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS5   0x000096    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO5   0x000098    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                      _TD   0x00009f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES6   0x0000a1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS6   0x0000a3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO6   0x0000a5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_R   0x0000ac    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES7   0x0000ae    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS7   0x0000b0    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO7   0x0000b2    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _TD_C   0x0000b9    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES8   0x0000bb    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS8   0x0000bd    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO8   0x0000bf    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     _MOV   0x0000c6    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    TRES9   0x0000c8    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     DOS9   0x0000ca    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                     UNO9   0x0000cc    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _40MS   0x0000d3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES10   0x0000d5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS10   0x0000d7    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO10   0x0000d9    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _4SEG   0x0000e1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   TRES11   0x0000e3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    DOS11   0x0000e5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    UNO11   0x0000e7    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _2SEG   0x0000ef    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  TRES11z   0x0000f1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   DOS11z   0x0000f3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   UNO11z   0x0000f5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                    _1SEG   0x0000fd    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                 TRES11zz   0x0000ff    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  DOS11zz   0x000101    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                  UNO11zz   0x000103    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\RETARDOS.INC
+                   _MEDIR   0x00010b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                   A_ECHO   0x00011b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                 CALCULAR   0x00011e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                MEDIR_DIS   0x00011f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                 COMPARAR   0x000124    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+                  _DECIDE   0x000128    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MEDIR.INC
+              _M_OFF_SM_L   0x00012c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+             _M_OFF_SM_L1   0x000130    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                     AQUI   0x000132    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    _SM_R   0x00013e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI1   0x000140    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                 _SM_C_MR   0x00014c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI2   0x00014e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                _SM_C_RET   0x000166    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI3   0x000168    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                 _SM_C_ML   0x000177    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+                    AQUI4   0x000179    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\MOVIMIENTO.INC
+           _ENVIARCOMANDO   0x000191    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+             _ENVIARLETRA   0x000197    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _M_LCD   0x00019d    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                     _NUM   0x0001be    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_2   0x0001c5    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_3   0x0001cc    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_4   0x0001d3    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_5   0x0001da    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_6   0x0001e1    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_7   0x0001e8    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_8   0x0001ef    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                    _ES_9   0x0001f6    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_10   0x0001fd    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_11   0x000206    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_12   0x00020f    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_13   0x000218    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_14   0x000221    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_15   0x00022a    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_16   0x000233    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_17   0x00023c    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_18   0x000245    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_19   0x00024e    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_20   0x000257    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_21   0x000260    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_22   0x000269    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_23   0x000272    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_24   0x00027b    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+                   _ES_25   0x000284    program     static C:\Users\win\Desktop\TESINA\v1.0\SENSOR CON MOTOR\LCD.INC
+
+
