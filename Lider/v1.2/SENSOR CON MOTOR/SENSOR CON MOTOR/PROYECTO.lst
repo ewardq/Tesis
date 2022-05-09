@@ -1,0 +1,1579 @@
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;DECLARACIÓN DE BITS
+  00000000            00002 TG              EQU             0X00    ;TIGER PIN0
+  00000001            00003 EC              EQU             0X01    ;ECHO PIN1
+                      00004 ;MH             EQU             0X00    ;MOTOR HACKERMAN PIN0_PH, PIN0 PORTA
+                      00005 ;MH1    EQU             0X01    MOTOR HACKERAN PIN1_PH, PIN1 PORTA      
+  00000003            00006 M1P1    EQU             0X03    ;MOTOR 1 PIN1_PH, PIN3_PIC
+  00000004            00007 M1P2    EQU             0X04    ;MOTOR 1 PIN2_PH, PIN4_PIC
+  00000005            00008 M2P1    EQU             0X05    ;MOTOR 2 PIN1_PH, PIN5_PIC      
+  00000006            00009 M2P2    EQU             0X06    ;MOTOR 2 PIN2_PH, PIN6_PIC
+  00000002            00010 SM              EQU             0X02    ;SALIDA PARA EL SERVOMOTOR PIN2_PIC
+  00000005            00011 RP0             EQU             0X05
+  00000006            00012 RP1             EQU             0X06
+                      00013 ;E              EQU             0X03    E DE LA LCD
+                      00014 ;RS             EQU             0X04    RS DE LA LC
+                      00015 ;DECLARACIÓN DE VARIABLES
+  00000030            00016 DIS             EQU             0X30    ;VARIAVLE PARA CONFIGURAR Y ESTAVLECER LA DISTANCIA
+  00000031            00017 CONT    EQU             0X31    ;CONTADOR PARA MEDIR LA DISTANCIA                       
+  00000021            00018 TIME1   EQU     0X21    ;VARIAVLES PARA 
+  00000022            00019 TIME2   EQU             0X22    ;HACER USO DE 
+  00000023            00020 TIME3   EQU             0X23    ;LAS SUVRUTINAS
+                      00021 
+                      00022 ; DECLARACIÓN DE REGISTRO 
+                      00023 
+  00000003            00024 STATUS  EQU             0X03
+  00000005            00025 PORTA   EQU             0X05
+  00000006            00026 PORTB   EQU             0X06
+  00000007            00027 PORTC   EQU             0X07
+  00000085            00028 TRISA   EQU             0X85
+  00000086            00029 TRISB   EQU             0X86
+  00000087            00030 TRISC   EQU             0X87    
+  00000189            00031 ANSELH  EQU             0X189
+  00000188            00032 ANSEL   EQU             0X188
+                      00033 
+                      00034                 ORG             0X00
+0000   2???           00035                 GOTO    INI
+                      00036                 ORG             0X20
+0020                  00037 INI             
+0020   01B0           00038                 CLRF    DIS                             ;SE LIMPIA LA VARIAVLE DE LA DISTANCIA
+0021   01B1           00039                 CLRF    CONT                    ;SE LIMPIA LA VARIAVLE CONTADOR
+0022   1683           00040                 BSF             STATUS,RP0              ;CAMBIAR AL BANCO 1     
+0023   3002           00041                 MOVLW   b'00000010'             ;DECLARAR ENTRADAS Y SALIDAS 
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0024   0087           00042                 MOVWF   TRISC                   ;ENTRADA PIN1 DEL TRISC, LAS DEMAS COMO SALIDA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0025   0185           00043                 CLRF    TRISA
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0026   0186           00044                 CLRF    TRISB
+0027   1703           00045                 BSF             STATUS,RP1              ;CAMBIAR AL BANCO 3
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0028   0189           00046                 CLRF    ANSELH                  ;CONFIGURA COMO DIGITAL
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0029   0188           00047                 CLRF    ANSEL
+002A   1283           00048                 BCF             STATUS,RP0
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+002B   1303           00049                 BCF             STATUS,RP1
+002C   0187           00050                 CLRF    PORTC
+                      00051 ;************************************************************
+                      00052 ;AQUI COMIENZA LA SECUENCIA DEL PROGRAMA
+                      00053 ;************************************************************
+                      00054 
+002D                  00055 COMIENZA
+                      00056 ;****************************
+                      00057 ;INICIALIZAR SERVO AL CENTRO
+                      00058 
+002D   3001           00059                 MOVLW   d'1'
+002E   00C0           00060                 MOVWF   0X40
+002F                  00061 REG
+002F   1507           00062                 BSF             PORTC,SM
+0030   2???           00063                 CALL    _CENTRO
+0031   1107           00064                 BCF             PORTC,SM
+0032   2???           00065                 CALL    _TD
+Message[305]: Using default destination of 1 (file).
+0033   0BC0           00066                 DECFSZ  0X40
+0034   2???           00067                 GOTO    REG
+                      00068                 
+0035   300A           00069                 MOVLW   d'10'                   ;VALOR DE LOS CENTIMETROS, EN ESTE CASO 10CM
+0036   00B0           00070                 MOVWF   DIS                             ;MOVERLO A LA VARIABLE DIS
+0037   01B1           00071                 CLRF    CONT                    ;LIMPIAR EL CONTADOR
+                      00072                 
+                      00073 ;*******************************
+                      00074 ;COMIENZA A ANDAR EL CARRO
+                      00075 ;********************************
+0038   1187           00076                 BCF             PORTC,M1P1              ;AVANZA HACIA ADELANTE MOTOR1
+0039   1607           00077                 BSF             PORTC,M1P2
+003A   1287           00078                 BCF             PORTC,M2P1              ;AVANZA HACIA ADELANE MOTOR 2
+003B   1707           00079                 BSF             PORTC,M2P2      
+                      00080 ;********************************
+                      00081 ;LLAMA A MEDIR LA DISTANCIA
+                      00082 ;********************************
+003C   2???           00083                 CALL    _MEDIR
+                      00084                 
+                      00085 ;*******************************
+                      00086 ;LLAMA A DECIDIR
+                      00087 ;******************************         
+003D   2???           00088                 CALL    _DECIDE
+                      00089                 
+                      00090 ;*******************************************
+                      00091 ;EN ESTA PARTE INCLUIMOS LAS LIVRERIAS
+                      00092 ;QUE OCUPAREMOS:
+                      00093 ;PARA LOS RETARDOS DE TIEMPO
+                      00094 ;PARA MEDIR LA DISTANCIA
+                      00095 ;PARA REALIZAR LOS MOVIENTOS DEL CARRITO 
+                      00096 ;******************************************             
+                      00097 #INCLUDE<RETARDOS.INC>
+Warning[205]: Found directive in column 1. (CBLOCK)
+Message[313]: CBLOCK constants will start with a value of 0.
+                      00001 CBLOCK
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00002 
+Warning[205]: Found directive in column 1. (ENDC)
+                      00003 ENDC
+                      00004 
+                      00005 
+003E   0008           00006         RETURN
+                      00007 ;***********************************
+                      00008 ;****************55MICRO************
+                      00009 ;***********************************
+003F                  00010 _55US
+003F   0000           00011                 NOP
+0040   0000           00012                 NOP
+0041   3002           00013                 MOVLW   .2
+0042   00A1           00014                 MOVWF   TIME1
+0043                  00015 TRES    
+0043   3003           00016                 MOVLW   .3
+0044   00A2           00017                 MOVWF   TIME2
+0045                  00018 DOS     
+0045   3001           00019                 MOVLW   .1
+0046   00A3           00020                 MOVWF   TIME3
+0047                  00021 UNO
+Message[305]: Using default destination of 1 (file).
+0047   0BA3           00022                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+0048   2???           00023 GOTO    UNO
+Message[305]: Using default destination of 1 (file).
+0049   0BA2           00024                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+004A   2???           00025 GOTO    DOS
+Message[305]: Using default destination of 1 (file).
+004B   0BA1           00026                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+004C   2???           00027 GOTO    TRES
+Warning[203]: Found opcode in column 1. (RETURN)
+004D   0008           00028 RETURN
+                      00029 
+                      00030 
+                      00031 ;***********************************
+                      00032 ;****************10MILI*************
+                      00033 ;***********************************
+004E                  00034 _10MS
+004E   3001           00035                 MOVLW   .1
+004F   00A1           00036                 MOVWF   TIME1
+0050                  00037 TRES0
+0050   300A           00038                 MOVLW   .10
+0051   00A2           00039                 MOVWF   TIME2
+0052                  00040 DOS0    
+0052   30F9           00041                 MOVLW   .249
+0053   00A3           00042                 MOVWF   TIME3
+0054                  00043 UNO0
+0054   0000           00044                 NOP
+Message[305]: Using default destination of 1 (file).
+0055   0BA3           00045                 DECFSZ  TIME3
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (GOTO)
+0056   2???           00046 GOTO    UNO0
+Message[305]: Using default destination of 1 (file).
+0057   0BA2           00047                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+0058   2???           00048 GOTO    DOS0
+Message[305]: Using default destination of 1 (file).
+0059   0BA1           00049                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+005A   2???           00050 GOTO    TRES0
+Warning[203]: Found opcode in column 1. (RETURN)
+005B   0008           00051 RETURN
+                      00052 
+                      00053 
+                      00054 ;***********************************
+                      00055 ;****************65MILI*************
+                      00056 ;***********************************
+005C                  00057 _65MS
+005C   3004           00058                 MOVLW   .4
+005D   00A1           00059                 MOVWF   TIME1
+005E                  00060 TRES1   
+005E   3064           00061                 MOVLW   .100
+005F   00A2           00062                 MOVWF   TIME2
+0060                  00063 DOS1    
+0060   3028           00064                 MOVLW   .40
+0061   00A3           00065                 MOVWF   TIME3
+0062                  00066 UNO1
+0062   0000           00067                 NOP
+Message[305]: Using default destination of 1 (file).
+0063   0BA3           00068                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+0064   2???           00069 GOTO    UNO1
+Message[305]: Using default destination of 1 (file).
+0065   0BA2           00070                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+0066   2???           00071 GOTO    DOS1
+Message[305]: Using default destination of 1 (file).
+0067   0BA1           00072                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+0068   2???           00073 GOTO    TRES1
+Warning[203]: Found opcode in column 1. (RETURN)
+0069   0008           00074 RETURN
+                      00075 
+                      00076 ;***********************************
+                      00077 ;******GIRA AL CENTRO***********
+                      00078 ;***********************************
+006A                  00079 _CENTRO
+006A   3001           00080                 MOVLW   .1
+006B   00A1           00081                 MOVWF   TIME1
+006C                  00082 TRES2   
+006C   3005           00083                 MOVLW   .5
+006D   00A2           00084                 MOVWF   TIME2
+006E                  00085 DOS2    
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+006E   305D           00086                 MOVLW   .93
+006F   00A3           00087                 MOVWF   TIME3
+0070                  00088 UNO2
+Message[305]: Using default destination of 1 (file).
+0070   0BA3           00089                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+0071   2???           00090 GOTO    UNO2
+Message[305]: Using default destination of 1 (file).
+0072   0BA2           00091                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+0073   2???           00092 GOTO    DOS2
+Message[305]: Using default destination of 1 (file).
+0074   0BA1           00093                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+0075   2???           00094 GOTO    TRES2
+Warning[203]: Found opcode in column 1. (RETURN)
+0076   0008           00095 RETURN
+                      00096 
+                      00097 ;***********************************
+                      00098 ;******GIRA A LA DERECHA***********
+                      00099 ;***********************************
+0077                  00100 _DER
+0077   300A           00101                 MOVLW   .10
+0078   00A1           00102                 MOVWF   TIME1
+0079                  00103 TRES3   
+0079   3001           00104                 MOVLW   .1
+007A   00A2           00105                 MOVWF   TIME2
+007B                  00106 DOS3    
+007B   3012           00107                 MOVLW   .18
+007C   00A3           00108                 MOVWF   TIME3
+007D                  00109 UNO3
+Message[305]: Using default destination of 1 (file).
+007D   0BA3           00110                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+007E   2???           00111 GOTO    UNO3
+Message[305]: Using default destination of 1 (file).
+007F   0BA2           00112                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+0080   2???           00113 GOTO    DOS3
+Message[305]: Using default destination of 1 (file).
+0081   0BA1           00114                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+0082   2???           00115 GOTO    TRES3
+Warning[203]: Found opcode in column 1. (RETURN)
+0083   0008           00116 RETURN
+                      00117 
+                      00118 
+                      00119 ;***********************************
+                      00120 ;********GIRA A LA IZQUIERDA**********
+                      00121 ;***********************************
+0084                  00122 _IZQ
+0084   30DC           00123                 MOVLW   .220
+0085   00A1           00124                 MOVWF   TIME1
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0086                  00125 TRES4   
+0086   3001           00126                 MOVLW   .1
+0087   00A2           00127                 MOVWF   TIME2
+0088                  00128 DOS4    
+0088   3001           00129                 MOVLW   .1
+0089   00A3           00130                 MOVWF   TIME3
+008A                  00131 UNO4
+Message[305]: Using default destination of 1 (file).
+008A   0BA3           00132                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+008B   2???           00133 GOTO    UNO4
+Message[305]: Using default destination of 1 (file).
+008C   0BA2           00134                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+008D   2???           00135 GOTO    DOS4
+Message[305]: Using default destination of 1 (file).
+008E   0BA1           00136                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+008F   2???           00137 GOTO    TRES4
+Warning[203]: Found opcode in column 1. (RETURN)
+0090   0008           00138 RETURN
+                      00139 
+                      00140 ;***********************************
+                      00141 ;***********300 MILISEGU*************
+                      00142 ;***********************************
+0091                  00143 _300ML
+0091   300A           00144                 MOVLW   .10
+0092   00A1           00145                 MOVWF   TIME1
+0093                  00146 TRES5   
+0093   3064           00147                 MOVLW   .100
+0094   00A2           00148                 MOVWF   TIME2
+0095                  00149 DOS5
+0095   3064           00150                 MOVLW   .100
+0096   00A3           00151                 MOVWF   TIME3
+0097                  00152 UNO5
+Message[305]: Using default destination of 1 (file).
+0097   0BA3           00153                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+0098   2???           00154 GOTO    UNO5
+Message[305]: Using default destination of 1 (file).
+0099   0BA2           00155                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+009A   2???           00156 GOTO    DOS5
+Message[305]: Using default destination of 1 (file).
+009B   0BA1           00157                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+009C   2???           00158 GOTO    TRES5
+Warning[203]: Found opcode in column 1. (RETURN)
+009D   0008           00159 RETURN
+                      00160 
+                      00161 
+                      00162 ;***********************************
+                      00163 ;******GIRA A LA IZQUIRDA***********
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00164 ;***********************************
+009E                  00165 _TD
+009E   3013           00166                 MOVLW   .19
+009F   00A1           00167                 MOVWF   TIME1
+00A0                  00168 TRES6   
+00A0   300A           00169                 MOVLW   .10
+00A1   00A2           00170                 MOVWF   TIME2
+00A2                  00171 DOS6    
+00A2   3020           00172                 MOVLW   .32
+00A3   00A3           00173                 MOVWF   TIME3
+00A4                  00174 UNO6
+Message[305]: Using default destination of 1 (file).
+00A4   0BA3           00175                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+00A5   2???           00176 GOTO    UNO6
+Message[305]: Using default destination of 1 (file).
+00A6   0BA2           00177                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+00A7   2???           00178 GOTO    DOS6
+Message[305]: Using default destination of 1 (file).
+00A8   0BA1           00179                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+00A9   2???           00180 GOTO    TRES6
+Warning[203]: Found opcode in column 1. (RETURN)
+00AA   0008           00181 RETURN
+                      00182 
+                      00183 ;***********************************
+                      00184 ;******GIRA A LA DERECHA***********
+                      00185 ;***********************************
+00AB                  00186 _TD_R
+00AB   305D           00187                 MOVLW   .93
+00AC   00A1           00188                 MOVWF   TIME1
+00AD                  00189 TRES7   
+00AD   300A           00190                 MOVLW   .10
+00AE   00A2           00191                 MOVWF   TIME2
+00AF                  00192 DOS7    
+00AF   3005           00193                 MOVLW   .5
+00B0   00A3           00194                 MOVWF   TIME3
+00B1                  00195 UNO7
+Message[305]: Using default destination of 1 (file).
+00B1   0BA3           00196                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+00B2   2???           00197 GOTO    UNO7
+Message[305]: Using default destination of 1 (file).
+00B3   0BA2           00198                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+00B4   2???           00199 GOTO    DOS7
+Message[305]: Using default destination of 1 (file).
+00B5   0BA1           00200                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+00B6   2???           00201 GOTO    TRES7
+Warning[203]: Found opcode in column 1. (RETURN)
+00B7   0008           00202 RETURN
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00203 
+                      00204 ;***********************************
+                      00205 ;******GIRA A LA IZQUIRDA***********
+                      00206 ;***********************************
+00B8                  00207 _TD_C
+00B8   3013           00208                 MOVLW   .19
+00B9   00A1           00209                 MOVWF   TIME1
+00BA                  00210 TRES8   
+00BA   300A           00211                 MOVLW   .10
+00BB   00A2           00212                 MOVWF   TIME2
+00BC                  00213 DOS8    
+00BC   301F           00214                 MOVLW   .31
+00BD   00A3           00215                 MOVWF   TIME3
+00BE                  00216 UNO8
+Message[305]: Using default destination of 1 (file).
+00BE   0BA3           00217                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+00BF   2???           00218 GOTO    UNO8
+Message[305]: Using default destination of 1 (file).
+00C0   0BA2           00219                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+00C1   2???           00220 GOTO    DOS8
+Message[305]: Using default destination of 1 (file).
+00C2   0BA1           00221                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+00C3   2???           00222 GOTO    TRES8
+Warning[203]: Found opcode in column 1. (RETURN)
+00C4   0008           00223 RETURN
+                      00224 
+                      00225 ;***********************************
+                      00226 ;***********RETROCEDER*************
+                      00227 ;***********************************
+00C5                  00228 _MOV
+00C5   3046           00229                 MOVLW   .70
+00C6   00A1           00230                 MOVWF   TIME1
+00C7                  00231 TRES9   
+00C7   3096           00232                 MOVLW   .150
+00C8   00A2           00233                 MOVWF   TIME2
+00C9                  00234 DOS9
+Warning[202]: Argument out of range.  Least significant bits used.
+00C9   30E8           00235                 MOVLW   .1000
+00CA   00A3           00236                 MOVWF   TIME3
+00CB                  00237 UNO9
+Message[305]: Using default destination of 1 (file).
+00CB   0BA3           00238                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+00CC   2???           00239 GOTO    UNO9
+Message[305]: Using default destination of 1 (file).
+00CD   0BA2           00240                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+00CE   2???           00241 GOTO    DOS9
+Message[305]: Using default destination of 1 (file).
+00CF   0BA1           00242                 DECFSZ  TIME1
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE  9
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (GOTO)
+00D0   2???           00243 GOTO    TRES9
+Warning[203]: Found opcode in column 1. (RETURN)
+00D1   0008           00244 RETURN
+                      00245 
+                      00246 
+                      00247 ;************************
+                      00248 ;*****LCD***************
+00D2                  00249 _40MS
+00D2   3004           00250                 MOVLW   .4
+00D3   00A1           00251                 MOVWF   TIME1
+00D4                  00252 TRES10
+00D4   300A           00253                 MOVLW   .10
+00D5   00A2           00254                 MOVWF   TIME2
+00D6                  00255 DOS10   
+00D6   30F9           00256                 MOVLW   .249
+00D7   00A3           00257                 MOVWF   TIME3
+00D8                  00258 UNO10
+00D8   0000           00259                 NOP
+Message[305]: Using default destination of 1 (file).
+00D9   0BA3           00260                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+00DA   2???           00261 GOTO    UNO10
+Message[305]: Using default destination of 1 (file).
+00DB   0BA2           00262                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+00DC   2???           00263 GOTO    DOS10
+Message[305]: Using default destination of 1 (file).
+00DD   0BA1           00264                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+00DE   2???           00265 GOTO    TRES10
+Warning[203]: Found opcode in column 1. (RETURN)
+00DF   0008           00266 RETURN
+                      00267 
+                      00268 ;*********************
+                      00269 ;*EL CARRITO RETOCEDE****************
+                      00270 ;*********************
+00E0                  00271 _RETRO
+00E0   300F           00272                 MOVLW   .15
+00E1   00A1           00273                 MOVWF   TIME1
+00E2                  00274 TRES11
+00E2   3064           00275                 MOVLW   .100
+00E3   00A2           00276                 MOVWF   TIME2
+00E4                  00277 DOS11   
+00E4   30F9           00278                 MOVLW   .249
+00E5   00A3           00279                 MOVWF   TIME3
+00E6                  00280 UNO11
+00E6   0000           00281                 NOP
+Message[305]: Using default destination of 1 (file).
+00E7   0BA3           00282                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+00E8   2???           00283 GOTO    UNO11
+Message[305]: Using default destination of 1 (file).
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 10
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00E9   0BA2           00284                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+00EA   2???           00285 GOTO    DOS11
+Message[305]: Using default destination of 1 (file).
+00EB   0BA1           00286                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+00EC   2???           00287 GOTO    TRES11
+Warning[203]: Found opcode in column 1. (RETURN)
+00ED   0008           00288 RETURN
+                      00289 
+                      00290 ;*********************
+                      00291 ;*EL CARRITO RETOCEDE*
+                      00292 ;*********************
+00EE                  00293 _RETRO1
+00EE   301E           00294                 MOVLW   .30
+00EF   00A1           00295                 MOVWF   TIME1
+00F0                  00296 TRES14
+00F0   3064           00297                 MOVLW   .100
+00F1   00A2           00298                 MOVWF   TIME2
+00F2                  00299 DOS14   
+00F2   30F9           00300                 MOVLW   .249
+00F3   00A3           00301                 MOVWF   TIME3
+00F4                  00302 UNO14
+00F4   0000           00303                 NOP
+Message[305]: Using default destination of 1 (file).
+00F5   0BA3           00304                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+00F6   2???           00305 GOTO    UNO14
+Message[305]: Using default destination of 1 (file).
+00F7   0BA2           00306                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+00F8   2???           00307 GOTO    DOS14
+Message[305]: Using default destination of 1 (file).
+00F9   0BA1           00308                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+00FA   2???           00309 GOTO    TRES14
+Warning[203]: Found opcode in column 1. (RETURN)
+00FB   0008           00310 RETURN
+                      00311 
+                      00312 ;***********************************
+                      00313 ;***********HACKERMAN*************
+                      00314 ;******IZQUIERDA Y DERECHA**********
+00FC                  00315 _HACK
+00FC   3008           00316                 MOVLW   .8
+00FD   00A1           00317                 MOVWF   TIME1
+00FE                  00318 TRES12  
+00FE   3064           00319                 MOVLW   .100
+00FF   00A2           00320                 MOVWF   TIME2
+0100                  00321 DOS12
+0100   30F9           00322                 MOVLW   .249
+0101   00A3           00323                 MOVWF   TIME3
+0102                  00324 UNO12
+Message[305]: Using default destination of 1 (file).
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 11
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0102   0BA3           00325                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+0103   2???           00326 GOTO    UNO12
+Message[305]: Using default destination of 1 (file).
+0104   0BA2           00327                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+0105   2???           00328 GOTO    DOS12
+Message[305]: Using default destination of 1 (file).
+0106   0BA1           00329                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+0107   2???           00330 GOTO    TRES12
+Warning[203]: Found opcode in column 1. (RETURN)
+0108   0008           00331 RETURN
+                      00332 
+                      00333 ;***********************************
+                      00334 ;*************HACKERMAN*************
+                      00335 ;***************CENTRO**************
+0109                  00336 _HACKCEN
+0109   3006           00337                 MOVLW   .6
+010A   00A1           00338                 MOVWF   TIME1
+010B                  00339 TRES13  
+010B   300A           00340                 MOVLW   .10
+010C   00A2           00341                 MOVWF   TIME2
+010D                  00342 DOS13
+010D   3064           00343                 MOVLW   .100
+010E   00A3           00344                 MOVWF   TIME3
+010F                  00345 UNO13
+Message[305]: Using default destination of 1 (file).
+010F   0BA3           00346                 DECFSZ  TIME3
+Warning[203]: Found opcode in column 1. (GOTO)
+0110   2???           00347 GOTO    UNO13
+Message[305]: Using default destination of 1 (file).
+0111   0BA2           00348                 DECFSZ  TIME2
+Warning[203]: Found opcode in column 1. (GOTO)
+0112   2???           00349 GOTO    DOS13
+Message[305]: Using default destination of 1 (file).
+0113   0BA1           00350                 DECFSZ  TIME1
+Warning[203]: Found opcode in column 1. (GOTO)
+0114   2???           00351 GOTO    TRES13
+Warning[203]: Found opcode in column 1. (RETURN)
+0115   0008           00352 RETURN
+                      00098 #INCLUDE<MEDIR.INC>
+                      00001 ;****************************************************
+                      00002 ;*****************************************************
+                      00003 ;                       SUBRUTINAS PARA MEDIR Y DECIDIR 
+                      00004 ;*****************************************************
+                      00005 ;*****************************************************
+Warning[205]: Found directive in column 1. (CBLOCK)
+                      00006 CBLOCK
+                      00007 
+Warning[205]: Found directive in column 1. (ENDC)
+                      00008 ENDC
+                      00009 
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 12
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00010 ;*****************************************************
+                      00011 ;AQUI MIDE LA DISTANCIA UNA VEZ QUE DETECTO QUE AL
+                      00012 ;FRENTE TIENE UN OBSTACULO, ESTO CON LA FINALIDAD DE 
+                      00013 ;QUE EL CARRITO TENGA MAYOR ANGULO DE MOV Y TENGA MAYOR
+                      00014 ;PRECISIÓN
+                      00015 ;****************************************************
+0116                  00016 _MEDIR_1
+0116   300F           00017                 MOVLW   d'15'                   ;VALOR DE LOS CENTIMETROS, EN ESTE CASO 15CM PARA TENER 
+                            UN MEJOR ANGULO AL MOMENTO DE MOVERSE
+0117   00B0           00018                 MOVWF   DIS                             ;MUEVE EL VALOR A LA VARIAVLE DISTANCIA
+0118   01B1           00019                 CLRF    CONT                    ;LIMPIA EL CONTADOR
+0119   2???           00020                 CALL    _65MS                   ;TIEMPO DE ESPERA QUE RECOMOENDA EL FABRICANTE
+011A   1407           00021                 BSF             PORTC,TG                ;MANDARLO POR EL PORTC EN EL TIGER
+011B   0000           00022                 NOP                                             ;
+011C   0000           00023                 NOP                                             ;P                 ______
+011D   0000           00024                 NOP                                             ;U                |          |  
+011E   0000           00025                 NOP                                             ;L                |          |
+011F   0000           00026                 NOP                                             ;S                |          |
+0120   0000           00027                 NOP                                             ;O                |      |
+0121   0000           00028                 NOP                                             ;               __| 10US |__
+0122   0000           00029                 NOP                                             ;
+0123   0000           00030                 NOP                                             ;
+0124   0000           00031                 NOP                                             ;
+0125   1007           00032                 BCF             PORTC,TG
+0126   2???           00033                 GOTO    A_ECHO
+Warning[203]: Found opcode in column 1. (RETURN)
+0127   0008           00034 RETURN
+                      00035 
+0128                  00036 _MEDIR
+0128   300A           00037                 MOVLW   d'10'                   ;VALOR DE LOS CENTIMETROS, EN ESTE CASO 10CM
+0129   00B0           00038                 MOVWF   DIS                             ;MUEVE EL VALOR A LA VARIAVLE DISTANCIA
+012A   01B1           00039                 CLRF    CONT                    ;LIMPIA EL CONTADOR
+012B   2???           00040                 CALL    _65MS                   ;TIEMPO DE ESPERA QUE RECOMOENDA EL FABRICANTE
+012C   1407           00041                 BSF             PORTC,TG                ;MANDARLO POR EL PORTC EN EL TIGER
+012D   0000           00042                 NOP                                             ;
+012E   0000           00043                 NOP                                             ;P                 ______
+012F   0000           00044                 NOP                                             ;U                |          |  
+0130   0000           00045                 NOP                                             ;L                |          |
+0131   0000           00046                 NOP                                             ;S                |          |
+0132   0000           00047                 NOP                                             ;O                |      |
+0133   0000           00048                 NOP                                             ;               __| 10US |__
+0134   0000           00049                 NOP                                             ;
+0135   0000           00050                 NOP                                             ;
+0136   0000           00051                 NOP                                             ;
+0137   1007           00052                 BCF     PORTC,TG
+                      00053                 
+                      00054 ;******************************************                     
+                      00055 ;ANALIZAR EL TIEMPO DE ECHO
+                      00056 ;SÍ EL SENSOR YA COMENZO A MEDIR
+                      00057 ;******************************************
+                      00058 
+0138                  00059 A_ECHO          
+0138   1C87           00060                 BTFSS   PORTC,EC                ;PREGUNTA SI HAY UN 1 EN LA SEÑAL DE ENTRADA ECHO
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 13
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0139   2???           00061                 GOTO    A_ECHO                  ;SI HAY 0, VUELVE A PREGUNTAR
+013A   2???           00062                 GOTO    CALCULAR                ;SI HAY UN 1, VA A CALCULAR 
+013B                  00063 CALCULAR
+013B   01B1           00064                 CLRF    CONT                    ;LIMPIAMOS EL VALOR DEL CONTEO
+                      00065 ;COMIENZA A MEDIR LA DISTANCIA
+013C                  00066 MEDIR_DIS
+013C   2???           00067                 CALL    _55US                   ;MANDAMOS UN RETARDO DE 58 MICROSEGUNDOS
+013D   0AB1           00068                 INCF    CONT,F                  ;INCREMENTAMOS                                          
+                                                    ;JUNTO CON  
+013E   1C87           00069                 BTFSS   PORTC,EC                ;PREGUNTA SI ES 1 EL PUERTO DEL ECHO                    
+                            ; ESTAS INSTRUCCIONES
+013F   2???           00070                 GOTO    COMPARAR                ;SI ES 0, VA A COMPARAR                                 
+                                            ;ACUMULAMOS
+0140   2???           00071                 GOTO    MEDIR_DIS               ;SI ES 1, VUELVE A MEDIAR
+                      00072                 
+0141                  00073 COMPARAR
+0141   2???           00074                 CALL    _M_LCD
+0142   0831           00075                 MOVF    CONT,W                  ;MOVEMOS EL VALOR DEL CONTADOR A W
+Message[305]: Using default destination of 1 (file).
+0143   02B0           00076                 SUBWF   DIS                             ;COMPARAMOS CON EL VALOR ESTABLECIDO DE LA DISTA
+                            NCIA, 10CM              
+Warning[203]: Found opcode in column 1. (RETURN)
+0144   0008           00077 RETURN
+                      00078         
+                      00079 ;***************************************
+                      00080 ;                               AQUI DECIDE     
+                      00081 ;**************************************
+0145                  00082 _DECIDE
+0145   1803           00083                 BTFSC   STATUS,0                ;PREGUNTA POR EL VALOR DEL CARRY
+0146   2???           00084                 CALL    _M_OFF_SM_L             ;SI ES 1, LLAMA A APAGAR LOS MOTORES (DETENER EL CARRITO
+                            ) Y GIRAR EL SERVO A LA IZQUIERDA
+0147   2???           00085                 GOTO    COMIENZA                ;VA A DONDE COMIENZA EL PROGRAMA
+Warning[203]: Found opcode in column 1. (RETURN)
+0148   0008           00086 RETURN
+                      00099 #INCLUDE<MOVIMIENTO.INC>
+                      00001 ;****************************************************
+                      00002 ;*****************************************************
+                      00003 ;                       SUBRUTINAS PARA MOVIMIENTO
+                      00004 ;TANTO DEL SERVO QUE MUEVE EL SENSOR COMO, EL CARRITO 
+                      00005 ;*****************************************************
+                      00006 ;*****************************************************
+Warning[205]: Found directive in column 1. (CBLOCK)
+                      00007 CBLOCK
+                      00008 
+Warning[205]: Found directive in column 1. (ENDC)
+                      00009 ENDC
+                      00010 ;*********************************************
+                      00011 ;AQUÍ LOS MOTORES SE DETIENEN, EL SERVO MOTOR
+                      00012 ;GIRA A LA IZQUIERDA Y LLAMA A MEDIR. SÍ LA 
+                      00013 ;DISTANCIA ES MENOR A 10, LLAMA A GIRAR EL
+                      00014 ;SERVO A LA DERECHA Y MEDIR SINO, POSICIONA EL
+                      00015 ;SERVO AL CENTRO Y CARRITO GIRA A LA IZQUIERDA
+                      00016 ;*********************************************
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 14
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0149                  00017 _M_OFF_SM_L
+                      00018 
+0149   1187           00019                 BCF             PORTC,M1P1              ;APAGA MOTOR1
+014A   1207           00020                 BCF             PORTC,M1P2
+014B   1287           00021                 BCF             PORTC,M2P1              ;APAGA MOTOR2
+014C   1307           00022                 BCF             PORTC,M2P2
+                      00023 
+014D                  00024 _M_OFF_SM_L1    
+014D   300A           00025                 MOVLW   d'10'
+014E   00C0           00026                 MOVWF   0X40
+014F                  00027 AQUI
+014F   1507           00028                 BSF             PORTC,SM
+0150   2???           00029                 CALL    _IZQ
+0151   1107           00030                 BCF             PORTC,SM
+0152   2???           00031                 CALL    _TD
+Message[305]: Using default destination of 1 (file).
+0153   0BC0           00032                 DECFSZ  0X40
+0154   2???           00033                 GOTO    AQUI
+                      00034                 
+0155   2???           00035                 CALL    _300ML
+                      00036                 
+                      00037                 
+0156   2???           00038                 CALL    _MEDIR_1                ;15 CM?
+                      00039                                                                 ;MIDE Y RETORNA
+0157   1803           00040                 BTFSC   STATUS,0                ;CHECA EL CARRY
+0158   2???           00041                 CALL    _SM_R                   ;SI ES 1, LLAMA A MOVER EL SERVOMOTOR A LA DERECHA
+0159   2???           00042                 CALL    _SM_C_ML                ;SI ES 0, LLAMA A MOVER EL SERVOMOTOR AL CENTRO Y MOVER 
+                            EL CARRITO
+                      00043                                                                 ;A LA IZQUIERDA
+Warning[203]: Found opcode in column 1. (RETURN)
+015A   0008           00044 RETURN
+                      00045 
+                      00046 ;*********************************************
+                      00047 ;AQUÍ LOS MOTORES SE DETIENEN, EL SERVO MOTOR
+                      00048 ;GIRA A LA DERECHA Y LLAMA A MEDIR. SI HAY UNA
+                      00049 ;DISTANCIA MENOR A 10, LLAMA A PONER EL SERVO 
+                      00050 ;AL CENTRO Y A RETROCEDER. SINO, LLAMA A PONER 
+                      00051 ;EL SERVO AL CENTRO Y GIRAR EL CAARRITO A LA 
+                      00052 ;DERECHA.
+                      00053 ;*********************************************
+                      00054 
+015B                  00055 _SM_R
+015B   301E           00056                 MOVLW   d'30'
+015C   00C0           00057                 MOVWF   0X40
+015D                  00058 AQUI1
+015D   1507           00059                 BSF             PORTC,SM
+015E   2???           00060                 CALL    _DER
+015F   1107           00061                 BCF             PORTC,SM
+0160   2???           00062                 CALL    _TD
+Message[305]: Using default destination of 1 (file).
+0161   0BC0           00063                 DECFSZ  0X40
+0162   2???           00064                 GOTO    AQUI1
+                      00065                 
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 15
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0163   2???           00066                 CALL    _300ML
+                      00067                 
+                      00068                 ;GOTO   COMIENZA
+0164   2???           00069                 CALL    _MEDIR_1                ;MIDE 15 CM?
+                      00070                 
+0165   1803           00071                 BTFSC   STATUS,0                ;CHECA EL CARRY
+0166   2???           00072                 CALL    _SM_C_RET               ;SI ES 1, MUEVE EL SERVO AL CENTRO Y RETROCEDE POR 2 SEG
+                            UNDOS
+                      00073                 ;GOTO   COMIENZA
+0167   2???           00074                 CALL    _SM_C_MR                ;SI ES 0, MUEVE EL SERVO AL CENTRO Y MUEVE EL CARRITO A 
+                            LA DERECHA
+Warning[203]: Found opcode in column 1. (RETURN)
+0168   0008           00075 RETURN
+                      00076 
+                      00077 ;*********************************************
+                      00078 ;AQUI EL SERVO GIRA AL CENTRO Y EL CARRITO GIRA 
+                      00079 ;A LA DERECHA Y LLAMA A MEDIR
+                      00080 ;*********************************************
+                      00081 
+0169                  00082 _SM_C_MR
+0169   3005           00083                 MOVLW   d'5'
+016A   00C0           00084                 MOVWF   0X40
+016B                  00085 AQUI2
+016B   1507           00086                 BSF             PORTC,SM
+016C   2???           00087                 CALL    _CENTRO
+016D   1107           00088                 BCF             PORTC,SM
+016E   2???           00089                 CALL    _TD
+Message[305]: Using default destination of 1 (file).
+016F   0BC0           00090                 DECFSZ  0X40
+0170   2???           00091                 GOTO    AQUI2
+                      00092                 
+0171   2???           00093                 CALL    _HACKER_IZQ             ;POSICIONA EL SISTEMA HACKERMAN HACIA LA DERECHA
+0172   2???           00094                 CALL    RETROCEDER              ;RETROCEDE POR 2.8 SEGUNDOS
+0173   2???           00095                 CALL    _HACKER_DER             ;POSICIONA EL SISTEMA HACKERMAN A LA IZQUIERDA PARA QUE 
+                            A ESE SENTIDO COMIENCE A GIRAR
+                      00096         
+0174   1187           00097                 BCF             PORTC,M1P1              ;MOTOR1 ON, Y MOTOR2 OFF. 
+0175   1607           00098                 BSF             PORTC,M1P2              ;ESTO HARA QUE EL CARRITO SE 
+0176   1287           00099                 BCF             PORTC,M2P1              ;POSICIONE DEL LADO DERECHO
+0177   1707           00100                 BSF             PORTC,M2P2              ; :)
+                      00101 
+0178   2???           00102                 CALL    _MOV
+0179   1207           00103                 BCF             PORTC,M1P2              ;APAGA MOTOR1
+017A   1307           00104                 BCF             PORTC,M2P2              ;DETIENE EL MOTOR
+017B   2???           00105                 CALL    _HACKER_CE_DER  ;LLAMA A PONER ELSISTEMA HACKERMAN AL CENTRO
+                      00106 
+017C   2???           00107                 GOTO    COMIENZA                ;COMIENZA DE NUEVO EL PROGRAMA
+Warning[203]: Found opcode in column 1. (RETURN)
+017D   0008           00108 RETURN
+                      00109 
+                      00110 ;*********************************************
+                      00111 ;AQUÍ EL SERVO GIRA AL CENTRO Y EL CARRITO
+                      00112 ;RETROCEDERA 
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 16
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00113 ;*********************************************
+                      00114 
+017E                  00115 _SM_C_RET
+                      00116                 
+017E   3005           00117                 MOVLW   d'5'
+017F   00C0           00118                 MOVWF   0X40
+0180                  00119 AQUI3
+0180   1507           00120                 BSF             PORTC,SM
+0181   2???           00121                 CALL    _CENTRO
+0182   1107           00122                 BCF             PORTC,SM
+0183   2???           00123                 CALL    _TD
+Message[305]: Using default destination of 1 (file).
+0184   0BC0           00124                 DECFSZ  0X40
+0185   2???           00125                 GOTO    AQUI3
+                      00126         
+0186   2???           00127                 CALL    RETROCEDER      
+                      00128                 ;BSF            PORTC,M1P1              ;MOTOR1 Y MOTOR2 GIRAN 
+                      00129                 ;BCF            PORTC,M1P2              ;EN SENTIDO CONTRARIO
+                      00130                 ;BSF            PORTC,M2P1              
+                      00131                 ;BCF            PORTC,M2P2
+                      00132                 ;CALL   _RETRO                  ;RETROCEDE POR 5 SEGUNDOS
+                      00133                 
+0187   0187           00134                 CLRF    PORTC                   ;LIMPIA EL PUERTO C PARA QUE SE APAGUEN LOS MOTORES 
+0188   2???           00135                 CALL    _M_OFF_SM_L1    ;LLAMA A VOLVER A GIRAR EL SERVO A LA IZQUIERDA
+                      00136 ;(EN ESTE PUNTO VUELVE A COMENZAR LA LOGICA PERO EL CARRITO YA SE ENCUENTA EN OTRA POSICION)
+Warning[203]: Found opcode in column 1. (RETURN)
+0189   0008           00137 RETURN
+                      00138 
+                      00139 ;*********************************************
+                      00140 ;AQUÍ EL SERVO GIRA AL CENTRO Y EL CARRITO
+                      00141 ;GIRA A LA DERECHA.
+                      00142 ;*********************************************
+                      00143 
+018A                  00144 _SM_C_ML
+                      00145                 
+018A   3005           00146                 MOVLW   d'5'
+018B   00C0           00147                 MOVWF   0X40
+018C                  00148 AQUI4
+018C   1507           00149                 BSF             PORTC,SM                ;EL SERVO SE
+018D   2???           00150                 CALL    _CENTRO                 ;POSICIONA AL
+018E   1107           00151                 BCF             PORTC,SM                ;AL CENTRO
+018F   2???           00152                 CALL    _TD
+Message[305]: Using default destination of 1 (file).
+0190   0BC0           00153                 DECFSZ  0X40
+0191   2???           00154                 GOTO    AQUI4
+                      00155                 
+0192   2???           00156                 CALL    _HACKER_DER             ;POSICIONA EL SISTEMA HACKERMAN HACIA LA DERECHA
+0193   2???           00157                 CALL    RETROCEDER              ;RETROCEDE POR 2.8 SEGUNDOS
+0194   2???           00158                 CALL    _HACKER_IZQ             ;POSICIONA EL SISTEMA HACKERMAN A LA IZQUIERDA PARA QUE 
+                            A ESE SENTIDO COMIENCE A GIRAR
+                      00159                 
+0195   1187           00160                 BCF             PORTC,M1P1              ;APAGA MOTOR1 OFF Y MOTOR2 ON
+0196   1607           00161                 BSF             PORTC,M1P2              ;ESTO HARA QUE EL CARRITO SE 
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 17
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0197   1287           00162                 BCF             PORTC,M2P1              ;POSICIONE DEL LADO IZQUIERDO
+0198   1707           00163                 BSF             PORTC,M2P2              ; <3
+                      00164                 
+0199   2???           00165                 CALL    _MOV                    ;RETARDO DE 4 SEGUNDOS
+                      00166                         
+019A   1307           00167                 BCF             PORTC,M2P2                      ;DETIENE EL MOTOR
+019B   1207           00168                 BCF             PORTC,M1P2                      ;DETIENE EL MOTOR
+019C   2???           00169                 CALL    _HACKER_CE_IZQ          ;LLAMA A PONER ELSISTEMA HACKERMAN AL CENTRO
+                      00170 
+019D   2???           00171                 GOTO    COMIENZA                ;COMIENZA DE NUEVO LA LOGICA DEL PROGRAMA
+Warning[203]: Found opcode in column 1. (RETURN)
+019E   0008           00172 RETURN
+                      00173 
+                      00174 
+                      00175 ;****************************************
+                      00176 ;MOVIMIENTOS PARA EL HACKERMAN***********
+                      00177 ;****************************************
+                      00178 
+019F                  00179 _HACKER_MOV_INICIAL
+019F   1405           00180                 BSF             PORTA,0                 ;GIRA A LA DERECHA
+01A0   1085           00181                 BCF             PORTA,1
+01A1   2???           00182                 CALL    _HACK
+01A2   1005           00183                 BCF             PORTA,0
+01A3   2???           00184                 CALL    _RETRO  
+                      00185                 
+01A4   1005           00186                 BCF             PORTA,0                 ;GIRA A LA IZQUIERDA
+01A5   1485           00187                 BSF             PORTA,1
+01A6   2???           00188                 CALL    _HACK
+01A7   1085           00189                 BCF             PORTA,1
+01A8   2???           00190                 CALL    _RETRO
+                      00191                 
+01A9   1405           00192                 BSF             PORTA,0                 ;SE POSICIONA AL CENTRO
+01AA   1085           00193                 BCF             PORTA,1
+01AB   2???           00194                 CALL    _HACKCEN
+01AC   1005           00195                 BCF             PORTA,0
+01AD   2???           00196                 CALL    _RETRO
+Warning[203]: Found opcode in column 1. (RETURN)
+01AE   0008           00197 RETURN
+                      00198 
+                      00199 
+01AF                  00200 _HACKER_DER
+01AF   1405           00201                 BSF             PORTA,0                 ;GIRA A LA DERECHA
+01B0   1085           00202                 BCF             PORTA,1
+01B1   2???           00203                 CALL    _HACK
+01B2   1005           00204                 BCF             PORTA,0
+Warning[203]: Found opcode in column 1. (RETURN)
+01B3   0008           00205 RETURN
+                      00206 
+01B4                  00207 _HACKER_IZQ
+01B4   1005           00208                 BCF             PORTA,0                 ;GIRA A LA IZQUIERDA
+01B5   1485           00209                 BSF             PORTA,1
+01B6   2???           00210                 CALL    _HACK
+01B7   1085           00211                 BCF             PORTA,1
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 18
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (RETURN)
+01B8   0008           00212 RETURN
+                      00213 
+                      00214 ;****************************************************
+                      00215 ;AL CENTRO VINIENDO DE LA DERECHA********************
+                      00216 ;****************************************************
+01B9                  00217 _HACKER_CE_DER
+01B9   1005           00218                 BCF             PORTA,0                 ;SE POSICIONA AL CENTRO
+01BA   1485           00219                 BSF             PORTA,1
+01BB   2???           00220                 CALL    _HACKCEN
+01BC   1085           00221                 BCF             PORTA,1
+Warning[203]: Found opcode in column 1. (RETURN)
+01BD   0008           00222 RETURN
+                      00223 
+                      00224 ;***************************************************
+                      00225 ;AL CENTRO VINIENDO DE LA IZQUIERDA
+01BE                  00226 _HACKER_CE_IZQ
+01BE   1405           00227                 BSF             PORTA,0                 ;SE POSICIONA AL CENTRO
+01BF   1085           00228                 BCF             PORTA,1
+01C0   2???           00229                 CALL    _HACKCEN
+01C1   1005           00230                 BCF             PORTA,0
+Warning[203]: Found opcode in column 1. (RETURN)
+01C2   0008           00231 RETURN
+                      00232 
+01C3                  00233 RETROCEDER
+01C3   1587           00234                 BSF             PORTC,M1P1              ;MOTOR1 Y MOTOR2 GIRAN 
+01C4   1207           00235                 BCF             PORTC,M1P2              ;EN SENTIDO CONTRARIO
+01C5   1687           00236                 BSF             PORTC,M2P1              
+01C6   1307           00237                 BCF             PORTC,M2P2
+01C7   2???           00238                 CALL    _RETRO1                 ;RETROCEDE POR 2 SEGUNDOS
+01C8   1187           00239                 BCF             PORTC,M1P1
+01C9   1287           00240                 BCF             PORTC,M2P1
+Warning[203]: Found opcode in column 1. (RETURN)
+01CA   0008           00241 RETURN
+                      00100 #INCLUDE<LCD.INC>
+Warning[205]: Found directive in column 1. (CBLOCK)
+                      00001 CBLOCK
+                      00002 
+Warning[205]: Found directive in column 1. (ENDC)
+                      00003 ENDC
+                      00004 
+                      00005 ;**************************************
+                      00006 ;**************************************
+                      00007 ;**************************************
+                      00008 
+01CB                  00009 _ENVIARCOMANDO
+01CB   0086           00010                 MOVWF   PORTB
+01CC   1205           00011                 BCF     PORTA,4
+01CD   1585           00012                 BSF     PORTA,3
+01CE   2???           00013                 CALL    _10MS
+01CF   1185           00014                 BCF     PORTA,3
+Warning[203]: Found opcode in column 1. (RETURN)
+01D0   0008           00015 RETURN
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 19
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00016 
+01D1                  00017 _ENVIARLETRA
+01D1   0086           00018                 MOVWF   PORTB
+01D2   1605           00019                 BSF     PORTA,4
+01D3   1585           00020                 BSF     PORTA,3
+01D4   2???           00021                 CALL    _10MS
+01D5   1185           00022                 BCF     PORTA,3
+Warning[203]: Found opcode in column 1. (RETURN)
+01D6   0008           00023 RETURN
+                      00024 
+                      00025 ;******************************************
+                      00026 ;********************************************
+01D7                  00027 _M_LCD          
+01D7   2???           00028                 CALL    _40MS
+01D8   3030           00029                 MOVLW   0X30                     ;INICIALIZACION
+01D9   2???           00030                 CALL    _ENVIARCOMANDO
+01DA   3033           00031                 MOVLW   0X33                    ;NUMERO DE LINEAS Y CARACTERESA MOSTRAR
+01DB   2???           00032                 CALL    _ENVIARCOMANDO
+01DC   3008           00033                 MOVLW   0X08                    ;APAGA EL DISPLAY
+01DD   2???           00034                 CALL    _ENVIARCOMANDO
+01DE   3001           00035                 MOVLW   0X01                    ;LIMPIA EL DISPLAY
+01DF   2???           00036                 CALL    _ENVIARCOMANDO
+01E0   3003           00037                 MOVLW    0X03
+01E1   2???           00038                 CALL    _ENVIARCOMANDO
+01E2   300E           00039                 MOVLW   0X0E
+01E3   2???           00040                 CALL    _ENVIARCOMANDO
+                      00041 
+                      00042 ;***************************************
+                      00043 ;**********CONFIGURACÓN LCD*************
+                      00044 ;***************************************
+01E4   3014           00045                 MOVLW   d'20'
+01E5   2???           00046                 CALL    _ENVIARLETRA
+01E6   3014           00047                 MOVLW   d'20'
+01E7   2???           00048                 CALL    _ENVIARLETRA
+01E8   3014           00049                 MOVLW   d'20'
+01E9   2???           00050                 CALL    _ENVIARLETRA
+01EA   3014           00051                 MOVLW   d'20'
+01EB   2???           00052                 CALL    _ENVIARLETRA
+01EC   3014           00053                 MOVLW   d'20'
+01ED   2???           00054                 CALL    _ENVIARLETRA
+01EE   3014           00055                 MOVLW   d'20'
+01EF   2???           00056                 CALL    _ENVIARLETRA
+01F0   2???           00057                 CALL    _NUM
+01F1   3014           00058                 MOVLW   d'20'
+01F2   2???           00059                 CALL    _ENVIARLETRA
+01F3   3043           00060                 MOVLW   'C'
+01F4   2???           00061                 CALL    _ENVIARLETRA
+01F5   304D           00062                 MOVLW   'M'
+01F6   2???           00063                 CALL    _ENVIARLETRA
+Warning[203]: Found opcode in column 1. (RETURN)
+01F7   0008           00064 RETURN
+                      00065 
+01F8                  00066 _NUM
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 20
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+01F8   3002           00067                 MOVLW   d'2'
+01F9   0231           00068                 SUBWF   CONT,W
+01FA   1803           00069                 BTFSC   STATUS,0
+01FB   2???           00070                 GOTO    _ES_2
+01FC   3031           00071                 MOVLW   '1'
+01FD   2???           00072                 CALL    _ENVIARLETRA
+01FE   0008           00073                 RETURN
+                      00074                 
+01FF                  00075 _ES_2
+01FF   3003           00076                 MOVLW   d'3'
+0200   0231           00077                 SUBWF   CONT,W
+0201   1803           00078                 BTFSC   STATUS,0
+0202   2???           00079                 GOTO    _ES_3
+0203   3032           00080                 MOVLW   '2'
+0204   2???           00081                 CALL    _ENVIARLETRA
+0205   0008           00082                 RETURN
+                      00083                 
+0206                  00084 _ES_3
+0206   3004           00085                 MOVLW   d'4'
+0207   0231           00086                 SUBWF   CONT,W
+0208   1803           00087                 BTFSC   STATUS,0
+0209   2???           00088                 GOTO    _ES_4
+020A   3033           00089                 MOVLW   '3'
+020B   2???           00090                 CALL    _ENVIARLETRA
+020C   0008           00091                 RETURN
+                      00092                 
+020D                  00093 _ES_4
+020D   3005           00094                 MOVLW   d'5'
+020E   0231           00095                 SUBWF   CONT,W
+020F   1803           00096                 BTFSC   STATUS,0
+0210   2???           00097                 GOTO    _ES_5
+0211   3034           00098                 MOVLW   '4'
+0212   2???           00099                 CALL    _ENVIARLETRA
+0213   0008           00100                 RETURN
+                      00101                 
+0214                  00102 _ES_5
+0214   3006           00103                 MOVLW   d'6'
+0215   0231           00104                 SUBWF   CONT,W
+0216   1803           00105                 BTFSC   STATUS,0
+0217   2???           00106                 GOTO    _ES_6
+0218   3035           00107                 MOVLW   '5'
+0219   2???           00108                 CALL    _ENVIARLETRA
+021A   0008           00109                 RETURN
+                      00110                 
+021B                  00111 _ES_6
+021B   3007           00112                 MOVLW   d'7'
+021C   0231           00113                 SUBWF   CONT,W
+021D   1803           00114                 BTFSC   STATUS,0
+021E   2???           00115                 GOTO    _ES_7
+021F   3036           00116                 MOVLW   '6'
+0220   2???           00117                 CALL    _ENVIARLETRA
+0221   0008           00118                 RETURN
+                      00119                 
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 21
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0222                  00120 _ES_7
+0222   3008           00121                 MOVLW   d'8'
+0223   0231           00122                 SUBWF   CONT,W
+0224   1803           00123                 BTFSC   STATUS,0
+0225   2???           00124                 GOTO    _ES_8
+0226   3037           00125                 MOVLW   '7'
+0227   2???           00126                 CALL    _ENVIARLETRA
+0228   0008           00127                 RETURN
+                      00128                 
+0229                  00129 _ES_8
+0229   3009           00130                 MOVLW   d'9'
+022A   0231           00131                 SUBWF   CONT,W
+022B   1803           00132                 BTFSC   STATUS,0
+022C   2???           00133                 GOTO    _ES_9
+022D   3038           00134                 MOVLW   '8'
+022E   2???           00135                 CALL    _ENVIARLETRA
+022F   0008           00136                 RETURN
+                      00137                 
+0230                  00138 _ES_9
+0230   300A           00139                 MOVLW   d'10'
+0231   0231           00140                 SUBWF   CONT,W
+0232   1803           00141                 BTFSC   STATUS,0
+0233   2???           00142                 GOTO    _ES_10
+0234   3039           00143                 MOVLW   '9'
+0235   2???           00144                 CALL    _ENVIARLETRA
+0236   0008           00145                 RETURN
+                      00146                 
+0237                  00147 _ES_10
+0237   300B           00148                 MOVLW   d'11'
+0238   0231           00149                 SUBWF   CONT,W
+0239   1803           00150                 BTFSC   STATUS,0
+023A   2???           00151                 GOTO    _ES_11
+023B   3031           00152                 MOVLW   '1'
+023C   2???           00153                 CALL    _ENVIARLETRA
+023D   3030           00154                 MOVLW   '0'
+023E   2???           00155                 CALL    _ENVIARLETRA
+023F   0008           00156                 RETURN
+                      00157                 
+0240                  00158 _ES_11
+0240   300C           00159                 MOVLW   d'12'
+0241   0231           00160                 SUBWF   CONT,W
+0242   1803           00161                 BTFSC   STATUS,0
+0243   2???           00162                 GOTO    _ES_12
+0244   3031           00163                 MOVLW   '1'
+0245   2???           00164                 CALL    _ENVIARLETRA
+0246   3031           00165                 MOVLW   '1'
+0247   2???           00166                 CALL    _ENVIARLETRA
+0248   0008           00167                 RETURN
+                      00168 
+0249                  00169 _ES_12
+0249   300D           00170                 MOVLW   d'13'
+024A   0231           00171                 SUBWF   CONT,W
+024B   1803           00172                 BTFSC   STATUS,0
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 22
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+024C   2???           00173                 GOTO    _ES_13
+024D   3031           00174                 MOVLW   '1'
+024E   2???           00175                 CALL    _ENVIARLETRA
+024F   3032           00176                 MOVLW   '2'
+0250   2???           00177                 CALL    _ENVIARLETRA
+0251   0008           00178                 RETURN
+                      00179                 
+0252                  00180 _ES_13
+0252   300E           00181                 MOVLW   d'14'
+0253   0231           00182                 SUBWF   CONT,W
+0254   1803           00183                 BTFSC   STATUS,0
+0255   2???           00184                 GOTO    _ES_14
+0256   3031           00185                 MOVLW   '1'
+0257   2???           00186                 CALL    _ENVIARLETRA
+0258   3033           00187                 MOVLW   '3'
+0259   2???           00188                 CALL    _ENVIARLETRA
+025A   0008           00189                 RETURN
+                      00190                 
+025B                  00191 _ES_14
+025B   300F           00192                 MOVLW   d'15'
+025C   0231           00193                 SUBWF   CONT,W
+025D   1803           00194                 BTFSC   STATUS,0
+025E   2???           00195                 GOTO    _ES_15
+025F   3031           00196                 MOVLW   '1'
+0260   2???           00197                 CALL    _ENVIARLETRA
+0261   3034           00198                 MOVLW   '4'
+0262   2???           00199                 CALL    _ENVIARLETRA
+0263   0008           00200                 RETURN
+                      00201                 
+0264                  00202 _ES_15
+0264   3010           00203                 MOVLW   d'16'
+0265   0231           00204                 SUBWF   CONT,W
+0266   1803           00205                 BTFSC   STATUS,0
+0267   2???           00206                 GOTO    _ES_16
+0268   3031           00207                 MOVLW   '1'
+0269   2???           00208                 CALL    _ENVIARLETRA
+026A   3035           00209                 MOVLW   '5'
+026B   2???           00210                 CALL    _ENVIARLETRA
+026C   0008           00211                 RETURN
+                      00212                 
+026D                  00213 _ES_16
+026D   3011           00214                 MOVLW   d'17'
+026E   0231           00215                 SUBWF   CONT,W
+026F   1803           00216                 BTFSC   STATUS,0
+0270   2???           00217                 GOTO    _ES_17
+0271   3031           00218                 MOVLW   '1'
+0272   2???           00219                 CALL    _ENVIARLETRA
+0273   3036           00220                 MOVLW   '6'
+0274   2???           00221                 CALL    _ENVIARLETRA
+0275   0008           00222                 RETURN
+                      00223                 
+0276                  00224 _ES_17
+0276   3012           00225                 MOVLW   d'18'
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 23
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0277   0231           00226                 SUBWF   CONT,W
+0278   1803           00227                 BTFSC   STATUS,0
+0279   2???           00228                 GOTO    _ES_18
+027A   3031           00229                 MOVLW   '1'
+027B   2???           00230                 CALL    _ENVIARLETRA
+027C   3037           00231                 MOVLW   '7'
+027D   2???           00232                 CALL    _ENVIARLETRA
+027E   0008           00233                 RETURN
+                      00234                 
+027F                  00235 _ES_18
+027F   3013           00236                 MOVLW   d'19'
+0280   0231           00237                 SUBWF   CONT,W
+0281   1803           00238                 BTFSC   STATUS,0
+0282   2???           00239                 GOTO    _ES_19
+0283   3031           00240                 MOVLW   '1'
+0284   2???           00241                 CALL    _ENVIARLETRA
+0285   3038           00242                 MOVLW   '8'
+0286   2???           00243                 CALL    _ENVIARLETRA
+0287   0008           00244                 RETURN
+                      00245                 
+0288                  00246 _ES_19
+0288   3014           00247                 MOVLW   d'20'
+0289   0231           00248                 SUBWF   CONT,W
+028A   1803           00249                 BTFSC   STATUS,0
+028B   2???           00250                 GOTO    _ES_20
+028C   3031           00251                 MOVLW   '1'
+028D   2???           00252                 CALL    _ENVIARLETRA
+028E   3039           00253                 MOVLW   '9'
+028F   2???           00254                 CALL    _ENVIARLETRA
+0290   0008           00255                 RETURN
+                      00256                 
+0291                  00257 _ES_20
+0291   3015           00258                 MOVLW   d'21'
+0292   0231           00259                 SUBWF   CONT,W
+0293   1803           00260                 BTFSC   STATUS,0
+0294   2???           00261                 GOTO    _ES_21
+0295   3032           00262                 MOVLW   '2'
+0296   2???           00263                 CALL    _ENVIARLETRA
+0297   3030           00264                 MOVLW   '0'
+0298   2???           00265                 CALL    _ENVIARLETRA
+0299   0008           00266                 RETURN
+                      00267                 
+029A                  00268 _ES_21
+029A   3016           00269                 MOVLW   d'22'
+029B   0231           00270                 SUBWF   CONT,W
+029C   1803           00271                 BTFSC   STATUS,0
+029D   2???           00272                 GOTO    _ES_22
+029E   3032           00273                 MOVLW   '2'
+029F   2???           00274                 CALL    _ENVIARLETRA
+02A0   3031           00275                 MOVLW   '1'
+02A1   2???           00276                 CALL    _ENVIARLETRA
+02A2   0008           00277                 RETURN
+                      00278                 
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 24
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+02A3                  00279 _ES_22
+02A3   3017           00280                 MOVLW   d'23'
+02A4   0231           00281                 SUBWF   CONT,W
+02A5   1803           00282                 BTFSC   STATUS,0
+02A6   2???           00283                 GOTO    _ES_23
+02A7   3032           00284                 MOVLW   '2'
+02A8   2???           00285                 CALL    _ENVIARLETRA
+02A9   3032           00286                 MOVLW   '2'
+02AA   2???           00287                 CALL    _ENVIARLETRA
+02AB   0008           00288                 RETURN
+                      00289                 
+02AC                  00290 _ES_23
+02AC   3018           00291                 MOVLW   d'24'
+02AD   0231           00292                 SUBWF   CONT,W
+02AE   1803           00293                 BTFSC   STATUS,0
+02AF   2???           00294                 GOTO    _ES_24
+02B0   3032           00295                 MOVLW   '2'
+02B1   2???           00296                 CALL    _ENVIARLETRA
+02B2   3033           00297                 MOVLW   '3'
+02B3   2???           00298                 CALL    _ENVIARLETRA
+02B4   0008           00299                 RETURN
+                      00300                 
+02B5                  00301 _ES_24
+02B5   3019           00302                 MOVLW   d'25'
+02B6   0231           00303                 SUBWF   CONT,W
+02B7   1803           00304                 BTFSC   STATUS,0
+02B8   2???           00305                 GOTO    _ES_25
+02B9   3032           00306                 MOVLW   '2'
+02BA   2???           00307                 CALL    _ENVIARLETRA
+02BB   3034           00308                 MOVLW   '4'
+02BC   2???           00309                 CALL    _ENVIARLETRA
+02BD   0008           00310                 RETURN
+                      00311                 
+02BE                  00312 _ES_25
+02BE   301A           00313                 MOVLW   d'26'
+02BF   0231           00314                 SUBWF   CONT,W
+02C0   1803           00315                 BTFSC   STATUS,0
+02C1   3032           00316                 MOVLW   '2'
+02C2   2???           00317                 CALL    _ENVIARLETRA
+02C3   3035           00318                 MOVLW   '5'
+02C4   2???           00319                 CALL    _ENVIARLETRA
+02C5   0008           00320                 RETURN
+                      00321                 
+                      00322 
+                      00101 ;ETIQUETA DE FINALIZACIÓN DEL PROGRAMA
+                      00102                 
+Warning[205]: Found directive in column 1. (END)
+                      00103 END
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 25
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ANSEL                             00000188
+ANSELH                            00000189
+AQUI                              0000014F
+AQUI1                             0000015D
+AQUI2                             0000016B
+AQUI3                             00000180
+AQUI4                             0000018C
+A_ECHO                            00000138
+CALCULAR                          0000013B
+COMIENZA                          0000002D
+COMPARAR                          00000141
+CONT                              00000031
+DIS                               00000030
+DOS                               00000045
+DOS0                              00000052
+DOS1                              00000060
+DOS10                             000000D6
+DOS11                             000000E4
+DOS12                             00000100
+DOS13                             0000010D
+DOS14                             000000F2
+DOS2                              0000006E
+DOS3                              0000007B
+DOS4                              00000088
+DOS5                              00000095
+DOS6                              000000A2
+DOS7                              000000AF
+DOS8                              000000BC
+DOS9                              000000C9
+EC                                00000001
+INI                               00000020
+M1P1                              00000003
+M1P2                              00000004
+M2P1                              00000005
+M2P2                              00000006
+MEDIR_DIS                         0000013C
+PORTA                             00000005
+PORTB                             00000006
+PORTC                             00000007
+REG                               0000002F
+RETROCEDER                        000001C3
+RP0                               00000005
+RP1                               00000006
+SM                                00000002
+STATUS                            00000003
+TG                                00000000
+TIME1                             00000021
+TIME2                             00000022
+TIME3                             00000023
+TRES                              00000043
+TRES0                             00000050
+TRES1                             0000005E
+TRES10                            000000D4
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 26
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRES11                            000000E2
+TRES12                            000000FE
+TRES13                            0000010B
+TRES14                            000000F0
+TRES2                             0000006C
+TRES3                             00000079
+TRES4                             00000086
+TRES5                             00000093
+TRES6                             000000A0
+TRES7                             000000AD
+TRES8                             000000BA
+TRES9                             000000C7
+TRISA                             00000085
+TRISB                             00000086
+TRISC                             00000087
+UNO                               00000047
+UNO0                              00000054
+UNO1                              00000062
+UNO10                             000000D8
+UNO11                             000000E6
+UNO12                             00000102
+UNO13                             0000010F
+UNO14                             000000F4
+UNO2                              00000070
+UNO3                              0000007D
+UNO4                              0000008A
+UNO5                              00000097
+UNO6                              000000A4
+UNO7                              000000B1
+UNO8                              000000BE
+UNO9                              000000CB
+_10MS                             0000004E
+_300ML                            00000091
+_40MS                             000000D2
+_55US                             0000003F
+_65MS                             0000005C
+_CENTRO                           0000006A
+_DECIDE                           00000145
+_DER                              00000077
+_ENVIARCOMANDO                    000001CB
+_ENVIARLETRA                      000001D1
+_ES_10                            00000237
+_ES_11                            00000240
+_ES_12                            00000249
+_ES_13                            00000252
+_ES_14                            0000025B
+_ES_15                            00000264
+_ES_16                            0000026D
+_ES_17                            00000276
+_ES_18                            0000027F
+_ES_19                            00000288
+_ES_2                             000001FF
+_ES_20                            00000291
+MPASM  5.51                      PROYECTO.ASM   4-1-2022  19:05:06         PAGE 27
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_ES_21                            0000029A
+_ES_22                            000002A3
+_ES_23                            000002AC
+_ES_24                            000002B5
+_ES_25                            000002BE
+_ES_3                             00000206
+_ES_4                             0000020D
+_ES_5                             00000214
+_ES_6                             0000021B
+_ES_7                             00000222
+_ES_8                             00000229
+_ES_9                             00000230
+_HACK                             000000FC
+_HACKCEN                          00000109
+_HACKER_CE_DER                    000001B9
+_HACKER_CE_IZQ                    000001BE
+_HACKER_DER                       000001AF
+_HACKER_IZQ                       000001B4
+_HACKER_MOV_INICIAL               0000019F
+_IZQ                              00000084
+_MEDIR                            00000128
+_MEDIR_1                          00000116
+_MOV                              000000C5
+_M_LCD                            000001D7
+_M_OFF_SM_L                       00000149
+_M_OFF_SM_L1                      0000014D
+_NUM                              000001F8
+_RETRO                            000000E0
+_RETRO1                           000000EE
+_SM_C_ML                          0000018A
+_SM_C_MR                          00000169
+_SM_C_RET                         0000017E
+_SM_R                             0000015B
+_TD                               0000009E
+_TD_C                             000000B8
+_TD_R                             000000AB
+__16F886                          00000001
+__DEBUG                           1
+
+Errors   :     0
+Warnings :    91 reported,     0 suppressed
+Messages :    61 reported,     0 suppressed
+
+
